@@ -14,23 +14,29 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Encuestas</h1>
     </ion-header-bar>
+
+
+
+    
     <ion-content>
-      <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+      <!-- Recargar lista de encuestas 'tirando' de la lista hacia abajo -->
+      <ion-refresher pulling-text="..." on-refresh="cargarEncuestas()">
+      </ion-refresher>
+
+      <!-- Listado de encuestas -->
+      <ion-list class="menu-list">
+        <ion-item class="item" menu-close href="#/app/encuesta/{{encuesta.id}}" ng-repeat="encuesta in encuestas">
+          <div class="row">
+            <div class="col col-75 menu-item">{{encuesta.nombre}}</div>
+            <div class="col">
+              <a href="#/app/resultados/{{encuesta.id}}" class="button button-positive button-small button-block icon ion-stats-bars"></a>
+            </div>
+          </div>
         </ion-item>
       </ion-list>
+
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>
